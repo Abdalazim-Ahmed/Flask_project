@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block title %} {{title}} {% endblock title%}
+
+{% block content %}
+
+    <div class="container w-50 bg-light mt-5">
+        <form action="#" method="POST">
+            {{form.hidden_tag() }}
+
+            <fieldset>
+                <legend class="text-center text-primary"><h3>Log In</h3></legend>
+                <div class="form-group">
+                    {{form.email.label(class="form-control-label text-muted")}}
+                    {{form.email(class="form-control")}}
+                </div>
+                <div class="form-group">
+                    {{form.password.label(class="form-control-label text-muted")}}
+                    {{form.password(class="form-control")}}
+                </div>
+
+                <div class="form-group mt-2">
+                    {{form.remember(class="")}}
+                    {{form.remember.label(class="text-muted")}}
+
+                </div>
+        
+                <div class="form-group">
+                    {{form.login(class="btn btn-primary form-control mt-2")}}
+                </div>
+            </fieldset>
+        </form>
+        <div class="text-center mt-1 p-2 bg-light" style="background-color:#eeeeeea2">
+            <span class="text-muted"> create new account <a href="{{url_for('users.signup')}}">Sign Up</a></span>
+        </div>
+    </div>
+
+{% endblock content %}

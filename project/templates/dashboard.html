@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% block title %} {{title}} {% endblock title%}
+
+{% block content %}
+
+<div class="container w-75 mt-2">
+   
+    <div class="bg-lgiht mt-3 text-dark">
+
+       <nav>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="profile">Profile</a>
+            </li>
+      
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="new_lesson">New Lesson</a>
+            </li>
+      
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="lessons">Your Lessons</a>
+            </li>
+      
+          </ul>
+       </nav>
+        
+    </div>
+
+<!-- include from profile page -->
+{% block profile %} {% endblock profile %}
+
+<!-- include from new_lesson page -->
+{% block new_lesson %} {% endblock new_lesson %}
+
+<!-- include from lessons page -->
+{% block lessons %} {% endblock lessons %}
+
+      
+</div>    
+
+{% endblock content %}
+

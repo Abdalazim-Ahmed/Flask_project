@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+{% block content  %}
+
+
+<div class="container w-50">
+
+
+    <form method="POST" enctype="multipart/form-data">
+
+        {{ form.hidden_tag() }}
+
+        <div class="mt-1">
+        {{ form.course.label(class="form-control-label")}}
+        {{ form.course(class="form-select")}}
+        
+            <button type="button" data-bs-target="#newCourse" class="btn btn-primary mt-2" data-bs-toggle="modal">New Course</button>
+        </div>
+
+        <div class="form-group mt-1">
+            {{form.title.label(class="form-control-label")}}
+            {{form.title(class="form-control")}}
+        </div>
+
+        <div class="form-group mt-1">
+            {{form.slug.label(class="form-control-label")}}
+            {{form.slug(class="form-control")}}
+        </div>
+        <div class="form-group mt-1">
+            {{form.content.label(class="form-control-label")}}
+            {{form.content(class="form-control")}}
+        </div>
+        <div class="form-group mt-1">
+            {{form.image.label(class="form-control-label")}}
+            {{form.image(class="form-control")}}
+        </div>
+        
+        {{form.update(class="mt-1 p-2 text-light bg-primary buttons")}}
+
+    </form>
+    {{ ckeditor.load() }}
+    {{ ckeditor.config(name='content') }}
+
+</div>
+{% endblock content %}

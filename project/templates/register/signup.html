@@ -1,0 +1,91 @@
+{% extends 'layout.html' %}
+
+{% block title %} {{title}} {% endblock title%}
+
+{% block content %}
+
+<div class="container" style="width: 70%;">
+    <form action="#" method="POST">
+        {{ form.hidden_tag() }}
+
+        <fieldset>
+            <legend class="text-center text-primary mt-2"><h3>Sign Up</h3></legend>
+            <div class="form-group">
+                {{form.fname.label(class="form-control-label text-muted")}}
+                {% if form.fname.errors %}
+                {{form.fname(class="form-control")}}
+                {% for error in form.fname.errors %}
+                <span class="text-muted">{{error}}</span>
+                {% endfor %}
+                {% else %}
+                {{form.fname(class="form-control")}}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{form.lname.label(class="form-control-label text-muted")}}
+                {% if form.lname.errors %}
+                {{form.lname(class="form-control")}}
+                <div class="feedback">
+                    {% for error in form.lname.errors %}
+                    <span class="text-muted">{{error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{form.lname(class="form-control")}}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{form.username.label(class="form-control-label text-muted")}}
+                {% if form.username.errors %}
+                {{form.username(class="form-control")}}
+                {% for error in form.username.errors %}
+                <span class="text-danger">{{error}}</span>
+                {% endfor %}
+                {% else %}
+                {{form.username(class="form-control")}}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{form.email.label(class="form-control-label text-muted")}}
+                {% if form.email.errors %}
+                {{form.email(class="form-control")}}
+                {% for error in form.email.errors %}
+                <span class="text-danger">{{error}}</span>
+                {% endfor %}
+                {% else %}
+                {{form.email(class="form-control")}}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{form.password.label(class="form-control-label text-muted")}}
+                {% if form.password.errors %}
+                {{form.password(class="form-control")}}
+                {% for error in form.password.errors %}
+                <span class="text-muted">{{error}}</span>
+                {% endfor %}
+                {% else %}
+                {{form.password(class="form-control")}}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{form.confirm_password.label(class="form-control-label text-muted")}}
+                {% if form.confirm_password.errors %}
+                {{form.confirm_password(class="form-control")}}
+                {% for error in form.confirm_password.errors %}
+                <span class="text-muted">{{error}}</span>
+                {% endfor %}
+                {% else %}
+                {{form.confirm_password(class="form-control")}}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{form.signup(class="btn btn-primary form-control mt-3")}}
+            </div>
+        </fieldset>
+    </form>
+    <div class="text-center p-2 mt-2" style="background-color:#eeeeeea2">
+        <span class="text-muted text-center">already have an account <a  href="{{url_for('users.login')}}">Log In</a></span>
+    </div>
+</div>
+
+{% endblock content %}

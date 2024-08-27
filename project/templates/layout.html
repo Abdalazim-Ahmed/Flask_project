@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- block title -->
+    <title>{% block title %} {% endblock title%}</title>
+    <!-- css files -->
+    <link rel="stylesheet" href="{{url_for('static', filename='favicon.ico')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.css')}}">
+</head>
+<body>
+
+    <!-- navbar -->
+    {% include 'parts/navbar.html' %}
+
+    <!-- start flash message -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category , message in messages %}
+    <div class="alert alert-{{category}} text-center text-muted" style="color:#FFF">{{message}}</div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <!-- end flash message -->
+
+    <!-- start block content -->
+    {% block content %}
+
+    {% endblock content %}
+    <!-- end block content -->
+
+    <!-- footer -->
+    {% include 'parts/footer.html' %}
+
+    <!-- javascript files -->
+    <script src="{{url_for('static', filename='js/bootstrap.bundle.min')}}"></script>
+    <script src="{{url_for('static', filename='js/bootstrap.js')}}"></script>
+    <script src="{{url_for('static', filename='js/jquery-3.7.1.min.js')}}"></script>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+{% extends 'dashboard.html' %}
+{% block lessons %} 
+
+<!-- Strat Lessons -->
+<div id="lessones">
+    <div class="row mb-2" style="width:80%; margin: auto;">
+        <h3 class="text-dark text-center p-4">Lessonse</h3>
+        {% for lesson in current_user.lessons %}
+        <div class="col-sm-12 col-md-6 col-lg-4 mt-3 mb-4">
+            <div class="card p-4">
+                <div class="card-img w-100">
+                    <img class="w-100"  src="{{url_for('static', filename='lesson_pics/'+lesson.lessons_img)}}" alt="img Not Found">
+                </div>
+                <div class="card-body" style="height: 150px; width: 200px; overflow: hidden;">
+                    <div class="card-title">
+                        <a href="{{ url_for('lessons.lesson', course_title=lesson.course.title, lesson_slug=lesson.slug )}}">{{lesson.title}}</a>
+                        <p class="card-text">
+                            {{lesson.content | safe }}
+                        </p>
+                        <span>{{lesson.create_at}}</span>
+                    </div>
+                </div>
+
+                <div class="mt-2">
+                    <a class="btn btn-primary m-auto" href="{{ url_for('lessons.update_lesson', course_title=lesson.course.title, lesson_slug=lesson.slug )}}">Update</a>
+                    <form action="{{ url_for('lessons.delete_lesson', lesson_id=lesson.id )}}" method="POST">
+                        <input class="btn btn-danger m-auto" type="submit" value="Delete">
+                    </form>
+                   
+              </div>
+            </div>
+        </div>
+        {% endfor %}
+
+</div>
+</div>
+
+
+{% endblock lessons %}

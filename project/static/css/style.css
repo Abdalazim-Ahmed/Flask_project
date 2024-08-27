@@ -1,0 +1,21 @@
+* {
+    font-family:system-ui;
+}
+
+
+a {
+    text-decoration: none;
+    letter-spacing: .03px;
+    font-weight: 500;
+}
+
+
+.links, .buttons {
+    border: 1px #FFF solid;
+    border-radius: 4px;
+}
+
+
+.container ul li{
+    list-style: none;
+}

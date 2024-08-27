@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block title %} {{title}} {% endblock title%}
+
+{% block content %}
+
+<div class="container mt-3">
+
+   <div class="row">
+      <div class="col-8">
+         <h3>{{ lesson.course.title }}</h3>
+         <hr>
+         <img src="{{ url_for('static', filename='lesson_pics/'+lesson.lessons_img) }}" alt="Img Not Found">
+         <h5>{{ lesson.title}}</h5>
+         <p class="p-2">{{lesson.content | safe }}</p>
+         <span class="text-muted"> {{lesson.create_at.strftime('%Y-%m-%d')}} </span>
+
+      </div>
+      <div class="col-4 bg-light">
+         {% for les in lesson.course.lessons %}
+         <ul>
+            <li class="list-group-itme border">
+               <a href="{{ url_for('lesson', course_title=les.course.title, lesson_slug=les.slug )}}">{{ les.title }}</a>
+            </li>
+         </ul>
+
+         {% endfor %}
+
+      </div>
+   </div>
+
+
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,77 @@
+{% extends 'dashboard.html' %}
+
+{% block title %} {{title}} {% endblock title%}
+
+{% block profile %}
+
+    <div class="mt-3">
+
+     <img src="{{img_file}}" style="width:80px; height:80px; border-radius:50%; margin-left:20px">
+
+        <form action="#" method="POST" class="mt-1" enctype="multipart/form-data">
+            {{ profile_form.hidden_tag() }}
+            <fieldset>
+                <div class="row  p-2">
+                    <div class="col">
+                        <label for="fname">First Name</label>
+                        <input class="form-control" type="text" name="fname" id="fname" value="{{current_user.fname}}" readonly>
+                    </div>
+                    <div class="col">
+                        <label for="fname">last Name</label>
+                        <input class="form-control" type="text" name="lname" id="fname" value="{{current_user.lname}}" readonly>
+                    </div>             
+                </div>
+                <div class="row p-2">
+                    <div class="col">
+
+                      {{profile_form.username.label(class="form-control-label")}}
+                      {{profile_form.username(class="form-control")}}
+   
+                    </div>
+                    <div class="col">
+
+                      {{profile_form.email.label(class="form-control-label")}}
+                      {{profile_form.email(class="form-control")}}
+                    </div>             
+                </div>
+
+            </fieldset>
+            <fieldset>
+                <div class="row p-2">
+                    <div class="col">
+
+                    {{ profile_form.bio.label(class="form-control-label") }}
+                    {{ profile_form.bio(class="form-control") }}
+    
+                    </div>
+                </div>
+                <div class="row p-2 mt-1">
+                    <div class="col">
+                      {{ profile_form.image.label(class="from-control-label") }}
+                      {% if profile_form.image.errors %}
+                      {{ profile_form.image(class="from-control") }}
+                      {% for error in profile_form.image.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                      {% endfor %}
+                      {% else %}  
+                      {{ profile_form.image(class="from-control") }}
+                      {% endif %}
+                    </div>
+                </div>
+            </fieldset>             
+
+                    <div>
+                        {{ profile_form.update(class="form-control bg-primary mt-2 text-light") }}
+                    </div>
+            
+        </form>  
+        
+    </div> 
+
+        
+{% endblock profile %}
+
+
+
+
+

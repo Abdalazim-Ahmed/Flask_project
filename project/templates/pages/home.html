@@ -1,0 +1,97 @@
+{% extends 'layout.html' %}
+
+{% block title %} {{title}} {% endblock title%}
+
+{% block content %}
+
+<!-- Start Courses -->
+
+<div class="row container mt-2 mb-2"  style="width:80%; margin: auto;">
+    <h3 class="text-dark text-center p-4">Courses</h3>
+    {% for cour in courses.items %}
+    <div class="col-sm-12 col-md-6 col-lg-4 mt-3  mb-4">
+        <div class="card p-4" style="min-height: 250px;">
+            <div class="card-body" style="height: 200px; width: 200px;">
+                <div class="card-img w-100">
+                    <img class="w-100"  src="{{url_for('static', filename='course_pics/'+cour.course_img)}}" alt="img Not Found">
+                </div>
+                <div class="card-title">
+                    <h3>{{cour.title|safe }}</h3>
+                    <p class="card-text">
+                        {{cour.content}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    <nav class="text-center">
+
+        {% for page_num in courses.iter_pages() %}
+        {% if courses.page == page_num %}
+        <a href="{{ url_for('main.home', page=page_num)}}" class="link active text-light bg-primary p-2">{{ page_num }}</a>
+        {% else%}
+        <a href="{{ url_for('main.home', page=page_num)}}" class="link p-2">{{ page_num }}</a>
+        {% endif %}
+        {% endfor %}
+
+    </nav>
+</div>
+
+<!-- End Courses -->
+
+
+
+<!-- Strat Lessons -->
+<div class="bg-dark" id="lessones">
+<div class="row container mt-2 mb-2" style="width:80%; margin: auto;">
+    <h3 class="text-light text-center p-4">Lessonse</h3>
+    {% for less in lessone.items %}
+    <div class="col-sm-12 col-md-6 col-lg-4 mt-3 mb-4">
+        <div class="card p-4" style="min-height: 250px;" >
+            <div class="card-body" style="height: 200px; width: 200px; overflow: hidden;">
+                <div class="card-img w-100">
+                    <img class="w-100"  src="{{url_for('static', filename='lesson_pics/'+less.lessons_img)}}" alt="img Not Found">
+                </div>
+                <div class="card-title">
+                    <a href="{{ url_for('lessonsbp.lesson', course_title=less.course.title, lesson_slug=less.slug )}}">{{less.title}}</a>
+                    <p class="card-text">
+                        {{less.content | safe }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+</div>
+
+<!-- End Lessons -->
+
+<!-- <div class="bg-dark">
+
+<div class="row bg-dark" style="width:80%; margin: auto;">
+
+
+{% for less in lessones %}
+        <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+            <div class="card">
+                <img src="{{url_for('static', filename='lesson_pics/'+less.lessons_img)}}" class="card-img-top" alt="Img Not Found">
+                <div class="card-body">
+                  <h5 class="card-title">{{ less.title}}</h5>
+                  <p class="card-text">{{less.content}}</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>      
+{% endfor %}
+
+
+</div>
+
+</div> -->
+
+{% endblock content %}
